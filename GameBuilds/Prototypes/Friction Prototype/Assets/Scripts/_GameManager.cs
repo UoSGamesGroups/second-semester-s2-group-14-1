@@ -18,7 +18,7 @@ public class _GameManager : MonoBehaviour
 	void Update () 
 	{
 
-		if(playerController.rb.velocity == 0)
+		/*if(playerController.rb.velocity == 0)
 		{
 			SceneManager.LoadScene(2);
 		}
@@ -26,6 +26,6 @@ public class _GameManager : MonoBehaviour
 		if(playerController2.rb.velocity == 0)
 		{
 			SceneManager.LoadScene(3);
-		}
+		}*/
 	}
 }

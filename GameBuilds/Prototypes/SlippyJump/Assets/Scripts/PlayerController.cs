@@ -12,14 +12,14 @@ public class PlayerController : MonoBehaviour
     public float movement;
     public bool grounded = true;
 
-	public bool gameEnded = false;
+	//public bool gameEnded = false;
 
     //public bool shouldStart = false;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-		rb.velocity = initialBoost * Time.deltaTime;
+		rb.velocity = initialBoost;
         
 	}
 	
@@ -27,22 +27,40 @@ public class PlayerController : MonoBehaviour
     {
         //if (shouldStart)
         //{
-            //rb.AddForce(transform.right * initialBoost);
-          //  shouldStart = false;
+        //rb.AddForce(transform.right * initialBoost);
+        //  shouldStart = false;
         //}
         //rb.AddForce(transform.right * movement);
-        if (Input.GetKeyDown(KeyCode.W) && grounded == true)
+        if (gameObject.tag == "Player1")
         {
-            grounded = false;
-            Jump();
+            if (Input.GetKeyDown(KeyCode.W) && grounded == true)
+            {
+                grounded = false;
+                Jump();
+            }
+
+            if (rb.velocity.x <= +1)
+            {
+                //gameEnded = true;
+                PlayerTwoWin();
+            }
         }
 
-		if (rb.velocity.x <= +1) 
-		{
-			gameEnded = true;
-			GameEnded ();
-		}
-	}
+        if (gameObject.tag == "Player2")
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) && grounded == true)
+            {
+                grounded = false;
+                Jump();
+            }
+
+            if (rb.velocity.x <= +1)
+            {
+                //gameEnded = true;
+                PlayerOneWin();
+            }
+        }
+    }
 
     void OnCollisionStay2D(Collision2D col)
     {
@@ -57,10 +75,15 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jump);
     }
 
-	public void GameEnded()
+	public void PlayerOneWin()
 	{
 		SceneManager.LoadScene (1);
 	}
+
+    public void PlayerTwoWin()
+    {
+        SceneManager.LoadScene(2);
+    }
 
 
 }

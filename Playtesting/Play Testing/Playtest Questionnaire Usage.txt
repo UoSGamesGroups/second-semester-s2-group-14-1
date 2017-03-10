@@ -1,0 +1,10 @@
+Have the play tester play the game first
+
+Then have them either fill in or answer the first three questions on the form.
+These questions are intentionally vague to give the tester opportunity to provide whatever feedback they have.
+This part is less important than the second part,
+
+The second set of questions are for you to fill out, try to do them while watching the play tester actually playing the game.
+These questions are the most important and rely on observing the behavior of the play tester mid-game and interpreting whats was good or bad about their experience and what we can improve or enhance.
+
+When these are filled out make sure to put your own name on the document so we know who carried it out.

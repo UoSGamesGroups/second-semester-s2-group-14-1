@@ -10,13 +10,14 @@ public class PlaySound : MonoBehaviour {
 
 	void Start () 
 	{
-		audio = GetComponent<AudioSource> ();
-		audio.Play (cheer, 1);
+		//GetComponent<AudioSource>().Play (cheer);
+		//GetComponent<AudioSource> ().Play (brassBand);
+		GetComponent<AudioSource>().PlayOneShot (cannon, 1);
 	}
 	
 
 	void Update ()
 	{
-		audio.Play (cheer, 1);
+		
 	}
 }

@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
-	public Vector2 initialBoost;
+	//public Vector2 initialBoost;
+	public float speed;
 
 	public Text speedText;
 
@@ -15,7 +16,9 @@ public class PlayerController : MonoBehaviour
     public float movement;
     public bool grounded = true;
 
-	private Vector2 speed;
+	//private Vector2 speedValue;
+
+	public float speedBoost;
 
 	//public bool gameEnded = false;
 
@@ -24,9 +27,10 @@ public class PlayerController : MonoBehaviour
 	void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-		rb.velocity = initialBoost;
-		speed = rb.velocity;
-		SetSpeedText ();
+		rb.AddForce (transform.right * speed, ForceMode2D.Impulse);
+		//rb.velocity = initialBoost;
+		//speed = rb.velocity;
+		//SetSpeedText ();
         
 	}
 	
@@ -38,7 +42,7 @@ public class PlayerController : MonoBehaviour
         //  shouldStart = false;
         //}
         //rb.AddForce(transform.right * movement);
-		SetSpeedText();
+		//SetSpeedText();
 
         if (gameObject.tag == "Player1")
         {
@@ -79,6 +83,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		Debug.Log ("OnTrigger");
+		if (other.gameObject.tag == "SpeedBoost") 
+		{
+			rb.AddForce (transform.right * speedBoost, ForceMode2D.Impulse);
+			Debug.Log ("Speed Boost?");
+		}
+	}
+
     public void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jump);
@@ -94,10 +108,10 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-	void SetSpeedText()
-	{
-		speedText.text = "Speed: " + speed.ToString ();
-	}
+	//void SetSpeedText()
+	//{
+		//speedText.text = "Speed: " + speed.ToString ();
+	//}
 
 
 }
